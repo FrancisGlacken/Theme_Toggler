@@ -7,11 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
+/**
+ *     I assembled this program to test out this method of switching themes during app runtime. The user
+ * can use a spinner or other input methods(this app uses a spinner) to switch the app's theme to several
+ * predetermined themes. When the user makes the relevant selection, the activity saves data into SharedPreferences
+ * and restarts the activity, but with if/else logic that will use the setTheme() method before super.onCreate.
+ * I don't know if it's the best solution as it kills the app but this seems to be the simplest one.
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
     // Strings for Shared Preferences
@@ -61,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         // Make spinner selected item equal to save position in sharedPref
         mySpinner.setSelection(spinnerSelection);
 
-        // Create on selected listener for Spinner
+        // Create onSelectedListener for Spinner
+        // It automatically runs the code in the relevant case
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE).edit();
 
                 switch(position) {
+                    // "Night Mode"
                     case 0:
                         // If position = 0, save DarkTheme = true to sharedPref, other themes = false
                         editor.putInt(PREFS_SPINNER_SELECTION_KEY, position);
@@ -83,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
 
+                    // "Blue Mode"
                     case 1:
                         editor.putInt(PREFS_SPINNER_SELECTION_KEY, position);
                         editor.putBoolean(PREFS_DARK_THEME_KEY, false);
@@ -96,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
 
+                    // "Red Mode"
                     case 2:
                         editor.putInt(PREFS_SPINNER_SELECTION_KEY, position);
                         editor.putBoolean(PREFS_DARK_THEME_KEY, false);
@@ -118,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Simple method that kills and restarts the activity
     public void redoTheme() {
         finish();
         Intent intent = getIntent();
