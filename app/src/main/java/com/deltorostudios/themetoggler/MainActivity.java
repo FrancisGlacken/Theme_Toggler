@@ -12,9 +12,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-
-//TODO: Figure out how a spinner can be used to change the theme usign this rough ass finish() shared pref strat
-
 public class MainActivity extends AppCompatActivity {
 
     // Strings for Shared Preferences
