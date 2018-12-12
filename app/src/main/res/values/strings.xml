@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Theme Toggler</string>
+
+    <string-array name="mySpinnerData">
+        <item>Night Theme</item>
+        <item>Blue Theme</item>
+        <item>Red Theme</item>
+    </string-array>
+
+</resources>
